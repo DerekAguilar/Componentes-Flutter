@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practica3/theme/app_theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,26 +11,32 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Componentes de Flutter'),
       ),
       body: ListView(
-        children: const <Widget>[
+        children: <Widget>[
           ListTile(
-            title: Text('Una Vida Fragmentada'),
-            subtitle: Text('Autor: Matt Dymerski'),
-            leading: Icon(Icons.menu_book),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: Text('Entradas',
+            style: AppTheme.lightTheme.textTheme.headlineLarge),
+            subtitle: Text('Introduciendo valores',
+            style: AppTheme.lightTheme.textTheme.bodySmall),
+            leading: const Icon(Icons.input_rounded),
+            trailing: const Icon(Icons.keyboard_arrow_right),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('El Portal en el Bosque'),
-            subtitle: Text('Autor: Matt Dymerski'),
-            leading: Icon(Icons.book_outlined),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: Text('ListView.builder',
+            style: AppTheme.lightTheme.textTheme.headlineLarge,),
+            subtitle: Text('Lista con scroll infinito',
+            style: AppTheme.lightTheme.textTheme.bodySmall,),
+            leading: const Icon(Icons.list_alt_rounded),
+            trailing: const Icon(Icons.keyboard_arrow_right),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('La Luna en Llamas'),
-            subtitle: Text('Autor: Matt Dymerski'),
-            leading: Icon(Icons.book_sharp),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: Text('Notificaciones',
+            style: AppTheme.lightTheme.textTheme.headlineLarge,),
+            subtitle: Text('Mostrar una notificación',
+            style: AppTheme.lightTheme.textTheme.bodySmall,),
+            leading: const Icon(Icons.notifications_outlined),
+            trailing: const Icon(Icons.keyboard_arrow_right),
           ),
         ],
       )
