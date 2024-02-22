@@ -38,10 +38,10 @@ class HomeScreen extends StatelessWidget {
             leading: const Icon(Icons.list_alt_rounded),
             trailing: const Icon(Icons.keyboard_arrow_right),
             onTap:() {
-              final ruta1=MaterialPageRoute(builder: (context) {
+              final ruta2=MaterialPageRoute(builder: (context) {
                 return const InfiniteScrollScreen();
               });
-              Navigator.push(context, ruta1);
+              Navigator.push(context, ruta2);
             },
           ),
           const Divider(),
@@ -53,10 +53,10 @@ class HomeScreen extends StatelessWidget {
             leading: const Icon(Icons.notifications_outlined),
             trailing: const Icon(Icons.keyboard_arrow_right),
             onTap:() {
-              final ruta1=MaterialPageRoute(builder: (context) {
+              final ruta3=MaterialPageRoute(builder: (context) {
                 return const NotificationScreen();
               });
-              Navigator.push(context, ruta1);
+              Navigator.push(context, ruta3);
             },
           ),
         ],
