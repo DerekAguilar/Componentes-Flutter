@@ -20,8 +20,11 @@ class HomeScreen extends StatelessWidget {
             style: AppTheme.lightTheme.textTheme.headlineLarge),
             subtitle: Text('Introduciendo valores',
             style: AppTheme.lightTheme.textTheme.bodySmall),
-            leading: const Icon(Icons.input_rounded),
-            trailing: const Icon(Icons.keyboard_arrow_right),
+            leading: IconTheme(
+              data: AppTheme.lightTheme.iconTheme, 
+              child: const Icon(Icons.input_rounded)
+            ),
+            trailing: trailingArrow(),
             onTap:() {
               final ruta1=MaterialPageRoute(builder: (context) {
                 return const InputsScreen();
@@ -35,8 +38,11 @@ class HomeScreen extends StatelessWidget {
             style: AppTheme.lightTheme.textTheme.headlineLarge,),
             subtitle: Text('Lista con scroll infinito',
             style: AppTheme.lightTheme.textTheme.bodySmall,),
-            leading: const Icon(Icons.list_alt_rounded),
-            trailing: const Icon(Icons.keyboard_arrow_right),
+            leading: IconTheme(
+              data: AppTheme.lightTheme.iconTheme, 
+              child: const Icon(Icons.list_alt_rounded)
+            ),
+            trailing: trailingArrow(),
             onTap:() {
               final ruta2=MaterialPageRoute(builder: (context) {
                 return const InfiniteScrollScreen();
@@ -50,8 +56,11 @@ class HomeScreen extends StatelessWidget {
             style: AppTheme.lightTheme.textTheme.headlineLarge,),
             subtitle: Text('Mostrar una notificación',
             style: AppTheme.lightTheme.textTheme.bodySmall,),
-            leading: const Icon(Icons.notifications_outlined),
-            trailing: const Icon(Icons.keyboard_arrow_right),
+            leading: IconTheme(
+              data: AppTheme.lightTheme.iconTheme, 
+              child: const Icon(Icons.notifications_outlined)
+            ),
+            trailing: trailingArrow(),
             onTap:() {
               final ruta3=MaterialPageRoute(builder: (context) {
                 return const NotificationScreen();
@@ -62,5 +71,12 @@ class HomeScreen extends StatelessWidget {
         ],
       )
     );
+  }
+
+  IconTheme trailingArrow() {
+    return IconTheme(
+            data: AppTheme.lightTheme.iconTheme, 
+            child: const Icon(Icons.keyboard_arrow_right)
+          );
   }
 }
