@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   // Constante color primario
   static const primColor=Color.fromARGB(255, 141,114, 104);
+  // Color primario oscurecido
+  static const darkPrimColor=Color.fromARGB(255, 99, 80, 73);
   // Constante color secundario
   static const secColor=Color.fromARGB(255, 124, 124, 124);
   // Constante de color de fondo modo claro
@@ -45,6 +47,12 @@ class AppTheme {
         decorationColor: AppTheme.secColor,
         decorationStyle: TextDecorationStyle.dashed,
         decorationThickness: 4.0
+      ),
+      headlineMedium: GoogleFonts.acme(
+        color:primColor,
+        fontSize: 20.0,
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.normal,
       ),
       // Estilo para texto pequeño
       bodySmall: GoogleFonts.alice(
