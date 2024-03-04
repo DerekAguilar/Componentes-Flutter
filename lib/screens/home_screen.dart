@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practica3/screens/images_screen.dart';
 import 'package:practica3/screens/infinite_scroll_screen.dart';
 import 'package:practica3/screens/inputs_screen.dart';
 import 'package:practica3/screens/notifications_screen.dart';
@@ -66,6 +67,24 @@ class HomeScreen extends StatelessWidget {
                 return const NotificationScreen();
               });
               Navigator.push(context, ruta3);
+            },
+          ),
+          const Divider(),
+          ListTile(
+            title: Text('Imágenes',
+            style: AppTheme.lightTheme.textTheme.headlineLarge,),
+            subtitle: Text('Mostrar fotos',
+            style: AppTheme.lightTheme.textTheme.bodySmall,),
+            leading: IconTheme(
+              data: AppTheme.lightTheme.iconTheme, 
+              child: const Icon(Icons.image_outlined)
+            ),
+            trailing: trailingArrow(),
+            onTap:() {
+              final ruta4=MaterialPageRoute(builder: (context) {
+                return const ImagesScreen();
+              });
+              Navigator.push(context, ruta4);
             },
           ),
         ],

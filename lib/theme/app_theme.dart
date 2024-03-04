@@ -56,7 +56,7 @@ class AppTheme {
       ),
       // Estilo para texto pequeño
       bodySmall: GoogleFonts.alice(
-        color:secColor,
+        color:AppTheme.secColor,
         fontSize: 16.0
       )
     )
