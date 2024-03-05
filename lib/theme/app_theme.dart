@@ -61,6 +61,7 @@ class AppTheme {
       )
     )
   );
+
   static final ThemeData darkTheme= ThemeData.dark().copyWith(
     appBarTheme: const AppBarTheme(
       foregroundColor: Colors.white,
