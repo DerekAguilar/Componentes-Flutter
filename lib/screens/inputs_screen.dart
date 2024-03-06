@@ -11,6 +11,7 @@ class InputsScreen extends StatefulWidget {
 class _InputsScreenState extends State<InputsScreen> {
   bool switchFlag=false; // controla el widget switch
   double sliderValue=0.0;
+  int radioSelected=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +26,7 @@ class _InputsScreenState extends State<InputsScreen> {
             nameInput(),
             switchInput(),
             sliderInput(),
+            radioInput(),
             const ElevatedButton(
               onPressed: null,
               child: Text('Guardar'),
@@ -105,6 +107,56 @@ class _InputsScreenState extends State<InputsScreen> {
           activeColor: AppTheme.darkPrimColor,
           inactiveColor: const Color.fromARGB(255, 182, 178, 178),
           label: '${sliderValue.round()}',
+        ),
+      ],
+    );  
+  }
+
+  // Botón de opciones (deben estar dentro de ListTile para funcionar)
+  Column radioInput(){
+    return Column(
+      children: [
+        Text(
+          '¿Qué prefieres para desarrollo móvil?',
+          style: AppTheme.lightTheme.textTheme.headlineLarge,
+        ),
+        ListTile(
+          title: Text(
+            'Kotlin',
+            style: AppTheme.lightTheme.textTheme.bodySmall,
+          ),
+          leading: Transform.scale(
+            scale: 1.5,
+            child: Radio(
+              value: 1,
+              groupValue: radioSelected,
+              onChanged: (value) {
+                setState(() {
+                  radioSelected=value!;
+                  print('Botón radio "$value" elegido');
+                });
+              }
+            ),
+          ),
+        ),
+        ListTile(
+          title: Text(
+            'Flutter',
+            style: AppTheme.lightTheme.textTheme.bodySmall,
+          ),
+          leading: Transform.scale(
+            scale:1.5,
+            child: Radio(
+              value: 2,
+              groupValue: radioSelected,
+              onChanged: (value) {
+                setState(() {
+                  radioSelected=value!;
+                  print('Botón radio "$value" elegido');
+                });
+              },
+            ),
+          ),
         ),
       ],
     );
