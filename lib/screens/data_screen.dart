@@ -5,8 +5,8 @@ class DataScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Datos de las entradas.'),
+    return const Scaffold(
+      body: Text('Datos de las entradas.'),
     );
   }
 }
