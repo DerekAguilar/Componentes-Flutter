@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:practica3/theme/app_theme.dart';
 
 class InputsScreen extends StatefulWidget {
@@ -12,6 +13,7 @@ class _InputsScreenState extends State<InputsScreen> {
   bool switchFlag=false; // controla el widget switch
   double sliderValue=0.0;
   int radioSelected=0;
+  var isChecked=[false,false,false];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +29,11 @@ class _InputsScreenState extends State<InputsScreen> {
             switchInput(),
             sliderInput(),
             radioInput(),
+            Text(
+              '¿Qué usas para ejecutar tus apps?',
+              style: AppTheme.lightTheme.textTheme.headlineLarge,
+            ),
+            checkboxInput(),
             const ElevatedButton(
               onPressed: null,
               child: Text('Guardar'),
@@ -133,7 +140,6 @@ class _InputsScreenState extends State<InputsScreen> {
               onChanged: (value) {
                 setState(() {
                   radioSelected=value!;
-                  print('Botón radio "$value" elegido');
                 });
               }
             ),
@@ -152,12 +158,64 @@ class _InputsScreenState extends State<InputsScreen> {
               onChanged: (value) {
                 setState(() {
                   radioSelected=value!;
-                  print('Botón radio "$value" elegido');
                 });
               },
             ),
           ),
         ),
+      ],
+    );
+  }
+
+  Row checkboxInput(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(
+          'Navegador',
+          style: AppTheme.lightTheme.textTheme.bodySmall,
+        ),
+        Transform.scale(
+          scale:1.5,
+          child: Checkbox(
+            value: isChecked[0],
+            onChanged: (value) {
+              setState(() {
+                isChecked[0]=value!;
+              });
+            }
+          ),
+        ),
+        Text(
+          'Emulador',
+          style: AppTheme.lightTheme.textTheme.bodySmall,
+        ),
+        Transform.scale(
+          scale:1.5,
+          child: Checkbox(
+            value: isChecked[1],
+            onChanged: (value) {
+              setState(() {
+                isChecked[1]=value!;
+              });
+            }
+          ),
+        ),
+        Text(
+          'Celular',
+          style: AppTheme.lightTheme.textTheme.bodySmall,
+        ),
+        Transform.scale(
+          scale:1.5,
+          child: Checkbox(
+            value: isChecked[2],
+            onChanged: (value) {
+              setState(() {
+                isChecked[2]=value!;
+              });
+            }
+          ),
+        )
       ],
     );
   }
