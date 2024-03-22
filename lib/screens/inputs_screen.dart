@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:practica3/models/data.dart';
+import 'package:practica3/screens/data_screen.dart';
 import 'package:practica3/screens/home_screen.dart';
 import 'package:practica3/screens/images_screen.dart';
 import 'package:practica3/screens/infinite_scroll_screen.dart';
@@ -13,9 +16,10 @@ class InputsScreen extends StatefulWidget {
 }
 
 class _InputsScreenState extends State<InputsScreen> {
+  String? name;
   bool switchFlag=false; // controla el widget switch
   double sliderValue=0.0;
-  int radioSelected=0;
+  String? radioSelected;
   var isChecked=[false,false,false];
   int navIndex=0;
 
@@ -34,6 +38,9 @@ class _InputsScreenState extends State<InputsScreen> {
       case 3:
         ruta=MaterialPageRoute(builder: (context) => const ImagesScreen());
       break;
+      case 4:
+        SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+      break;
     }
     setState(() {
       navIndex=index;
@@ -47,26 +54,44 @@ class _InputsScreenState extends State<InputsScreen> {
       appBar: AppBar(
         title: const Text('Entradas'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            nameInput(),
-            switchInput(),
-            sliderInput(),
-            radioInput(),
-            Text(
-              '¿Qué usas para ejecutar tus apps?',
-              style: AppTheme.lightTheme.textTheme.headlineLarge,
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                nameInput(),
+                switchInput(),
+                sliderInput(),
+                radioInput(),
+                Text(
+                  '¿Qué usas para ejecutar tus apps?',
+                  style: AppTheme.lightTheme.textTheme.headlineLarge,
+                ),
+                checkboxInput(),
+                ElevatedButton(
+                  onPressed: () {
+                    Data data=Data(
+                      nm: name!,
+                      likes: switchFlag,
+                      rating: sliderValue.round(),
+                      lang: radioSelected!,
+                      wb: isChecked[0],
+                      emu: isChecked[1],
+                      phn: isChecked[2]
+                    );
+                    final ruta5=MaterialPageRoute(builder: (context) {
+                      return DataScreen(info: data);
+                    });
+                    Navigator.push(context, ruta5);
+                  },
+                  child: const Text('Guardar'),
+                ),
+              ],
             ),
-            checkboxInput(),
-            const ElevatedButton(
-              onPressed: null,
-              child: Text('Guardar'),
-            ),
-          ],
-        ),
+          ),
+        ]
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: navIndex,
@@ -108,6 +133,7 @@ class _InputsScreenState extends State<InputsScreen> {
             labelText: 'Escribe tu nombre:',
             labelStyle: AppTheme.lightTheme.textTheme.headlineLarge,
           ),
+          onChanged: (text) => name=text,
         );
   }
 
@@ -178,13 +204,16 @@ class _InputsScreenState extends State<InputsScreen> {
           leading: Transform.scale(
             scale: 1.5,
             child: Radio(
-              value: 1,
+              value: 'Kotlin',
               groupValue: radioSelected,
               onChanged: (value) {
                 setState(() {
                   radioSelected=value!;
                 });
-              }
+              },
+              activeColor: AppTheme.primColor,
+              focusColor: AppTheme.primColor,
+              overlayColor: const MaterialStatePropertyAll(Color.fromARGB(111, 175, 140, 128)),
             ),
           ),
         ),
@@ -196,13 +225,16 @@ class _InputsScreenState extends State<InputsScreen> {
           leading: Transform.scale(
             scale:1.5,
             child: Radio(
-              value: 2,
+              value: 'Flutter',
               groupValue: radioSelected,
               onChanged: (value) {
                 setState(() {
                   radioSelected=value!;
                 });
               },
+              activeColor: AppTheme.primColor,
+              focusColor: AppTheme.primColor,
+              overlayColor: const MaterialStatePropertyAll(Color.fromARGB(111, 175, 140, 128)),
             ),
           ),
         ),
@@ -226,7 +258,8 @@ class _InputsScreenState extends State<InputsScreen> {
               setState(() {
                 isChecked[0]=value!;
               });
-            }
+            },
+            activeColor: AppTheme.primColor,
           ),
         ),
         Text(
@@ -241,7 +274,8 @@ class _InputsScreenState extends State<InputsScreen> {
               setState(() {
                 isChecked[1]=value!;
               });
-            }
+            },
+            activeColor: AppTheme.primColor,
           ),
         ),
         Text(
@@ -256,7 +290,8 @@ class _InputsScreenState extends State<InputsScreen> {
               setState(() {
                 isChecked[2]=value!;
               });
-            }
+            },
+            activeColor: AppTheme.primColor,
           ),
         )
       ],

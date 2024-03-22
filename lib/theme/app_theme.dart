@@ -40,7 +40,7 @@ class AppTheme {
     textTheme: TextTheme(
       headlineLarge: GoogleFonts.acme(
         color:primColor,
-        fontSize:28.0,
+        fontSize:24.0,
         fontWeight: FontWeight.w500,
         fontStyle: FontStyle.normal,
         decoration: TextDecoration.underline,
